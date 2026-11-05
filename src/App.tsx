@@ -3,6 +3,7 @@ import './App.css'
 import TodoList from './components/TodoList'
 import TodoInput from './components/TodoInput'
 import TodoFilter from './components/TodoFilter'
+import ThemeToggle from './components/ThemeToggle'
 
 function App() {
 
@@ -10,7 +11,7 @@ function App() {
 
     <div>
       <h1>My Todo Application</h1>
-
+      <ThemeToggle />
       <TodoInput />
       <TodoFilter />
       <TodoList />
