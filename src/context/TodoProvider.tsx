@@ -49,9 +49,13 @@ export function TodoProvider({ children }: TodoProviderProps) {
     );
   };
 
-
+  const clearCompleted = () => {
+  setTodos((prevTodos) =>
+    prevTodos.filter((todo) => !todo.completed)
+  );
+};
   return (
-    <TodoContext.Provider value={{ todos, addTodo, toggleTodo, deleteTodo }}>
+    <TodoContext.Provider value={{ todos, addTodo, toggleTodo, deleteTodo, clearCompleted }}>
       {children}
     </TodoContext.Provider>
   );
