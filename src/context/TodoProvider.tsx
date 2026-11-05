@@ -11,8 +11,20 @@ export function TodoProvider({ children }: TodoProviderProps) {
 
   const [todos, setTodos] = useState<Todo[]>([]);
 
+   // Add a new todo
+  const addTodo = (text: string) => {
+    const newTodo: Todo = {
+      id: Date.now(),
+      text: text,
+      completed: false,
+    };
+
+     setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
+
+
   return (
-    <TodoContext.Provider value={{ todos }}>
+    <TodoContext.Provider value={{ todos, addTodo }}>
       {children}
     </TodoContext.Provider>
   );

@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import './App.css'
+import TodoList from './components/TodoList'
+import TodoInput from './components/TodoInput'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    <h1>Vite + React</h1>
-    </>
+
+    <div>
+      <h1>My Todo Application</h1>
+
+      <TodoInput />
+      <TodoList />
+    </div>
+
   )
 }
 
