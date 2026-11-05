@@ -6,6 +6,7 @@ import TodoFilter from './components/TodoFilter'
 import ThemeToggle from './components/ThemeToggle'
 import { ThemeContext } from './context/ThemeContext'
 import ClearCompleted from './components/ClearCompleted'
+import TodoCounter from './components/TodoCounter'
 
 function App() {
   const context = useContext(ThemeContext);
@@ -20,6 +21,8 @@ function App() {
 
     <div className={`app ${theme}`}>
       <h1>My Todo Application</h1>
+
+      <TodoCounter />
       <ThemeToggle />
       <TodoInput />
       <TodoFilter />
