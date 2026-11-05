@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { TodoContext } from "./TodoContext";
 import type { Todo } from "../types";
@@ -9,7 +9,17 @@ interface TodoProviderProps {
 
 export function TodoProvider({ children }: TodoProviderProps) {
 
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const savedTodos = localStorage.getItem("todos");
+
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
+
+  // Save todos whenever they change
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
 
    // Add a new todo
   const addTodo = (text: string) => {
