@@ -11,6 +11,7 @@ function App() {
       <h1>My Todo Application</h1>
 
       <TodoInput />
+      
       <TodoList />
     </div>
 
