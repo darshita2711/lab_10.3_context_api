@@ -5,6 +5,9 @@ import type {Todo} from "../types";
 interface TodoContextType {
   todos: Todo[];
   addTodo: (text: string) => void;
+  toggleTodo: (id: number) => void;
+
+  deleteTodo: (id: number) => void;
 }
 
 // Create our context
