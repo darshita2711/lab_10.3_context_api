@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext, useTheme } from "../context/ThemeContext";
 
 function ThemeToggle() {
   const context = useContext(ThemeContext);
@@ -9,7 +9,7 @@ function ThemeToggle() {
     throw new Error("ThemeToggle must be inside ThemeProvider");
   }
 
-  const { theme, toggleTheme } = context;
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div>

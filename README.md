@@ -1,32 +1,58 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# Context API Todo Application
 
-Currently, two official plugins are available:
+## Project Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This is a Todo application built using React, TypeScript, and the Context API.
 
-## React Compiler
+The application allows users to add, complete, delete, and filter todos. It also supports light and dark themes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+I built this project to practice sharing state between React components using the Context API.
 
-## Expanding the Oxlint configuration
+## Features
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- Add new todos.
+- Mark todos as completed or active.
+- Delete individual todos.
+- Filter todos by All, Active, and Completed.
+- Clear all completed todos.
+- Switch between light and dark themes.
+- Save todos and theme preferences using localStorage.
+- Display todo counts.
+- Use custom hooks to access context data.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## Technologies Used
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- React
+- TypeScript
+- JavaScript
+- Context API
+- React Hooks
+- CSS
+- Vite
+- localStorage
+
+## How to Run the Project
+
+1. Clone this repository.
+2. Open the project folder in VS Code.
+3. Install dependencies:
+
+   npm install
+
+4. Start the development server:
+
+   npm run dev
+
+5. Open the local URL shown in your terminal.
+
+## What I Practiced
+
+- Creating React Context.
+- Using Context Providers.
+- Managing shared state.
+- Using useState and useEffect.
+- Using useMemo and useCallback.
+- Creating custom hooks.
+- Saving data in localStorage.
+- Working with TypeScript interfaces and types.

@@ -1,6 +1,6 @@
 
 import { createContext } from "react"
-import { useState } from "react";
+import { useState,useContext } from "react";
 import type { FilterProviderProps } from "../types";
 
 export type FilterType = "all" | "active" | "completed";
@@ -22,6 +22,16 @@ function FilterProvider({ children }: FilterProviderProps) {
       {children}
     </FilterContext.Provider>
   );
+}
+// Create Custom Hook
+export function useFilter() {
+  const context = useContext(FilterContext);
+
+  if (!context) {
+    throw new Error("useFilter must be used inside FilterProvider");
+  }
+
+  return context;
 }
 
 export default FilterProvider;

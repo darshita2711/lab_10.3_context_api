@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useCallback } from "react";
 import type { ReactNode } from "react";
 import { TodoContext } from "./TodoContext";
 import type { Todo } from "../types";
@@ -10,9 +10,14 @@ interface TodoProviderProps {
 export function TodoProvider({ children }: TodoProviderProps) {
 
   const [todos, setTodos] = useState<Todo[]>(() => {
+    try {
     const savedTodos = localStorage.getItem("todos");
 
     return savedTodos ? JSON.parse(savedTodos) : [];
+    } catch (error) {
+    console.error("Could not load todos:", error);
+    return [];
+  }
   });
 
   // Save todos whenever they change
@@ -22,7 +27,7 @@ export function TodoProvider({ children }: TodoProviderProps) {
 
 
    // Add a new todo
-  const addTodo = (text: string) => {
+  const addTodo = useCallback((text: string) => {
     const newTodo: Todo = {
       id: Date.now(),
       text: text,
@@ -30,9 +35,9 @@ export function TodoProvider({ children }: TodoProviderProps) {
     };
 
      setTodos((prevTodos) => [...prevTodos, newTodo]);
-  };
+  }, []);
   // Mark a todo as completed or incomplete
-  const toggleTodo = (id: number) => {
+  const toggleTodo = useCallback((id: number) => {
     setTodos((prevTodos) =>
       prevTodos.map((todo) =>
         todo.id === id
@@ -40,20 +45,20 @@ export function TodoProvider({ children }: TodoProviderProps) {
           : todo
       )
     );
-  };
+  }, []);
 
   // Delete a todo
-  const deleteTodo = (id: number) => {
+  const deleteTodo = useCallback((id: number) => {
     setTodos((prevTodos) =>
       prevTodos.filter((todo) => todo.id !== id)
     );
-  };
+  }, []);
 
-  const clearCompleted = () => {
+  const clearCompleted = useCallback(() => {
   setTodos((prevTodos) =>
     prevTodos.filter((todo) => !todo.completed)
   );
-};
+}, []);
   return (
     <TodoContext.Provider value={{ todos, addTodo, toggleTodo, deleteTodo, clearCompleted }}>
       {children}

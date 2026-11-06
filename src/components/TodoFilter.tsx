@@ -1,6 +1,7 @@
 
 import { useContext } from "react";
 import { FilterContext } from "../context/FilterContext";
+import {useFilter} from "../context/FilterContext";
 
 function TodoFilter() {
   const context = useContext(FilterContext);
@@ -9,7 +10,7 @@ function TodoFilter() {
     throw new Error("TodoFilter must be inside FilterProvider");
   }
 
-  const { filter, setFilter } = context;
+  const { filter, setFilter } = useFilter();
 
   return (
     <div>

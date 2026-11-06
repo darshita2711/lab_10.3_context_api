@@ -1,8 +1,8 @@
 
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { TodoContext } from "../context/TodoContext";
 import TodoItem from "./TodoItem";
-import { FilterContext } from "../context/FilterContext";
+import { FilterContext, useFilter } from "../context/FilterContext";
 
 function TodoList() {
    const todoContext = useContext(TodoContext);
@@ -13,20 +13,22 @@ function TodoList() {
   }
 
   const { todos } = todoContext;
-  const { filter } = filterContext;
+  const { filter } = useFilter();
 
   // Filter todos based on selected filter
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") {
-      return !todo.completed;
-    }
+   const filteredTodos = useMemo(() => {
+    return todos.filter((todo) => {
+      if (filter === "active") {
+        return !todo.completed;
+      }
 
-    if (filter === "completed") {
-      return todo.completed;
-    }
+      if (filter === "completed") {
+        return todo.completed;
+      }
 
-    return true;
-  });
+      return true;
+    });
+  }, [todos, filter]);
 
   return (
     <div>
